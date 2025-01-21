@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shitty Site</title>
+    <script>
+        var userPassword = "password123"; // BAD: Storing password in plain text
+    </script>
+    <style>
+        body { background-color: yellow; color: red; font-family: 'Comic Sans MS'; }
+        h1 { font-size: 100px; }
+        p { color: blue; }
+    </style>
+</head>
+<body>
+    <h1>Welcome to the Shittiest Site</h1>
+    <p>Hey, you've found the world's worst website. Enjoy your stay!</p>
+    <form method="post" action="submit_form.php">
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <input type="submit" value="Submit">
+    </form>
+
+    <!-- Insecure JavaScript - stealing user input -->
+    <script>
+        document.querySelector("form").addEventListener("submit", function(e) {
+            e.preventDefault();
+            alert("You just submitted your info to a fake site! :D");
+            console.log("Username: " + document.querySelector("input[name='username']").value);
+            console.log("Password: " + document.querySelector("input[name='password']").value); // BAD: Logging passwords
+        });
+    </script>
+    
+    <!-- Insecure iframe -->
+    <iframe src="http://example.com" width="500" height="500"></iframe>
+
+    <!-- External script (could be malicious) -->
+    <script src="http://evilscript.com/malicious.js"></script>
+
+</body>
+</html>
